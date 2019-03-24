@@ -1,0 +1,28 @@
+<% include ./partials/header.ejs %>
+
+<!--<h1 class="display-4">Welcome to <%= title %> </h1> -->
+
+<!--Contents for Landing page/home page-->
+
+<% if (title == "Home"){%>
+<!--this include statement takes contents for home page from home.ejs-->
+<% include ./partials/home.ejs %> <%} %>
+<!--Contents for About me page-->
+<% if (title == "About Me") {%>
+<!--this include statement takes contents for About Us page from about.ejs-->
+<% include ./partials/about.ejs %> <%} %>
+
+<!--Contents for Projects page-->
+<% if (title == "Projects") {%>
+<!--this include statement takes contents for Projects from projects.ejs-->
+<% include ./partials/projects.ejs %> <%} %>
+
+<!--Contents for Services page-->
+<% if (title == "Services") {%>
+<!--this include statement takes contents for Services from services.ejs-->
+<% include ./partials/services.ejs %> <%} %>
+
+<!--Contents for Services page-->
+<% if (title == "Contact") {%>
+<!--this include statement takes contents for Contact Page from contact.ejs-->
+<% include ./partials/contact.ejs %> <%} %> <% include ./partials/footer.ejs %>
