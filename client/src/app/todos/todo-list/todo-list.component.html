@@ -1,3 +1,41 @@
-<p>
-  todo-list works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <h1>To Do List Items</h1>
+      <a class="btn btn-primary" routerLink="/todo-list/add" role="button">
+        <i class="fas fa-plus-circle"></i> Add a To Do List Item</a
+      >
+      <br />
+      <table class="table table-bordered table-striped table-hover">
+        <!-- Header Row-->
+        <tr>
+          <th class="text-center">Project Name</th>
+          <th class="text-center">Description</th>
+          <th class="text-center">Due Date</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+        </tr>
+
+        <!-- Repeatable Template Row -->
+
+        <tr *ngFor="let todo of todos">
+          <td class="text-center">{{ todo.projectName }}</td>
+          <td class="text-center">{{ todo.description }}</td>
+          <td class="text-center">{{ todo.dueDate }}</td>
+
+          <td class="text-center">
+            <a routerLink="edit/{{ todo.id }}" class="btn btn-primary"
+              ><i class="fas fa-pencil-alt"></i> Edit</a
+            >
+          </td>
+
+          <td class="text-center">
+            <a routerLink="delete/{{ todo.id }}" class="btn btn-danger"
+              ><i class="fas fa-trash-alt"></i> Delete</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
