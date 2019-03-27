@@ -9,6 +9,7 @@ import { ProjectsComponent } from "./pages/projects/projects.component";
 import { ServicesComponent } from "./pages/services/services.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
+import { TodoListComponent } from "./todos/todo-list/todo-list.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent, data: { title: "Home" } },
@@ -24,6 +25,12 @@ const routes: Routes = [
     data: { title: "Services" }
   },
   { path: "contact", component: ContactComponent, data: { title: "Contact" } },
+
+  {
+    path: "contact/todo-list",
+    component: TodoListComponent,
+    data: { title: "To-Do List" }
+  },
   {
     path: "",
     redirectTo: "/home",

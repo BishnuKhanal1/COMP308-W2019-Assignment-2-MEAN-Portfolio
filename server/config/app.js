@@ -33,7 +33,8 @@ mongoDB.once("open", () => {
 });
 
 let indexRouter = require("../routes/index");
-let contactRouter = require("../routes/contact");
+//let todoRouter = require("../routes/contact");
+let todoRouter = require("../routes/todo");
 
 let app = express();
 
@@ -97,7 +98,7 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 passport.use(strategy);
 
 app.use("/api", indexRouter);
-app.use("/api/contact-list", contactRouter); //To do- protect this section
+app.use("/api/todo-list", todoRouter); //To do- protect this section
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/index.html"));

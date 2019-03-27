@@ -2,10 +2,10 @@ let express = require("express");
 let router = express.Router();
 
 // create a reference to the db schema
-let contactModel = require("../models/contact");
+let todoModel = require("../models/todo");
 
-module.exports.displayContactList = (req, res, next) => {
-  contactModel.find((err, contactList) => {
+module.exports.displayToDoList = (req, res, next) => {
+  todoModel.find((err, todoList) => {
     if (err) {
       return console.error(err);
     } else {
@@ -13,8 +13,8 @@ module.exports.displayContactList = (req, res, next) => {
 
       res.json({
         success: true,
-        msg: "Contact List Displayed Successfully!",
-        contactList: contactList,
+        msg: "To Do List Displayed Successfully!",
+        todoList: todoList,
         user: req.user
       });
     }
@@ -29,21 +29,21 @@ module.exports.displayAddPage = (req, res, next) => {
 };
 
 module.exports.processAddPage = (req, res, next) => {
-  let newContact = contactModel({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    age: req.body.age
+  let newTodo = todoModel({
+    projectName: req.body.projectName,
+    description: req.body.description,
+    dueDate: req.body.dueDate
   });
 
-  contactModel.create(newContact, (err, contactModel) => {
+  todoModel.create(newTodo, (err, todoModel) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the contact list
+      // refresh the todo list
       res.json({
         success: true,
-        msg: "Successfully Added New Contact!"
+        msg: "Successfully Added New To Do Item!"
       });
     }
   });
@@ -52,7 +52,7 @@ module.exports.processAddPage = (req, res, next) => {
 module.exports.displayEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  contactModel.findById(id, (err, contactObject) => {
+  todoModel.findById(id, (err, todoObject) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -60,8 +60,8 @@ module.exports.displayEditPage = (req, res, next) => {
       // show the edit view
       res.json({
         success: true,
-        msg: "Successfully Displayed Contact to Edit!",
-        contact: contactObject
+        msg: "Successfully Displayed to do item to Edit!",
+        todo: todoObject
       });
     }
   });
@@ -70,22 +70,22 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  let updatedContact = contactModel({
+  let updatedTodo = todoModel({
     _id: id,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    age: req.body.age
+    projectName: req.body.projectName,
+    description: req.body.description,
+    dueDate: req.body.dueDate
   });
 
-  contactModel.update({ _id: id }, updatedContact, err => {
+  todoModel.update({ _id: id }, updatedTodo, err => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
       res.json({
         success: true,
-        msg: "Successfully Edited Conatct!",
-        contact: updatedContact
+        msg: "Successfully Edited To Do Items!",
+        todo: updatedTodo
       });
     }
   });
@@ -94,14 +94,14 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
 
-  contactModel.remove({ _id: id }, err => {
+  todoModel.remove({ _id: id }, err => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
       res.json({
         success: true,
-        msg: "Successfully Deleted Contact!"
+        msg: "Successfully Deleted To Do Item!"
       });
     }
   });
