@@ -22,6 +22,10 @@ import {
   FlashMessagesService
 } from "angular2-flash-messages";
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TodoDetailsComponent } from './todos/todo-details/todo-details.component';
+import { TodoDeleteComponent } from './todos/todo-delete/todo-delete.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { TodoListComponent } from './todos/todo-list/todo-list.component';
     ServicesComponent,
     ContactComponent,
     PageNotFoundComponent,
-    TodoListComponent
+    TodoListComponent,
+    RegisterComponent,
+    LoginComponent,
+    TodoDetailsComponent,
+    TodoDeleteComponent
   ],
   imports: [
     BrowserModule,
